@@ -1,0 +1,45 @@
+﻿@model RoomType
+
+@{
+    ViewData["Title"] = "Upsert";
+}
+
+<form method="post" asp-action="Upsert">
+    <input asp-for="Id" hidden />
+
+    <div class="row border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">@(Model.Id!=0?"Update": "Create") RoomType</h2>
+            <hr />
+        </div>
+        @*<div asp-validation-summary="All" class="text-danger"></div>*@
+
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="MaxClientsAllowed"></label>
+            <input asp-for="MaxClientsAllowed" class="form-control" />
+            <span asp-validation-for="MaxClientsAllowed" class="text-danger"></span>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-primary" style="width:150px">@(Model.Id!=0?"Update": "Create")</button>
+            <a asp-controller="RoomTypes" asp-action="Index" class="btn btn-secondary" style="width:150px">Back To List</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+}

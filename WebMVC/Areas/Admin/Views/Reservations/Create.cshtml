@@ -1,0 +1,84 @@
+﻿@model Reservation
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form method="post" asp-action="Create">
+    <input asp-for="Id" hidden />
+    <input asp-for="ApplicationUserId" hidden />
+    <input asp-for="RoomId" hidden />
+
+    <div class="row border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Reservation</h2>
+            <hr />
+        </div>
+        @*<div asp-validation-summary="All" class="text-danger"></div>*@
+
+        <div class="mb-3 col-6">
+            <label asp-for="StartDate"></label>
+            <input asp-for="StartDate" class="form-control" />
+            <span asp-validation-for="StartDate" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 col-6">
+            <label asp-for="EndDate"></label>
+            <input asp-for="EndDate" class="form-control" />
+            <span asp-validation-for="EndDate" class="text-danger"></span>
+        </div>
+        <div class="mb-3 col-6">
+            <label asp-for="NumberOfPeopel"></label>
+            <input asp-for="NumberOfPeopel" class="form-control" />
+            <span asp-validation-for="NumberOfPeopel" class="text-danger"></span>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="card border-primary mb-3 col-md-6 col-lg-4">
+                    <h5 class="card-header">Branch</h5>
+                    <div class="card-body text-primary">
+                        <p class="card-text">
+                            <strong>Name: </strong>@Model.Room.Branch.Name
+                        </p>
+                        <p class="card-text">
+                            <strong>Location: </strong>@Model.Room.Branch.Location
+                        </p>
+                    </div>
+                </div>
+                <div class="card border-primary mb-3 col-md-6 col-lg-4">
+                    <h5 class="card-header">Room Type</h5>
+                    <div class="card-body text-primary">
+                        <p class="card-text">
+                            <strong>Type: </strong>@Model.Room.RoomType.Name
+                        </p>
+                        <p class="card-text">
+                            <strong>Price: </strong>@Model.Room.RoomType.Price (per/night)
+                        </p>
+                    </div>
+                </div>
+                <div class="card border-primary mb-3 col-md-6 col-lg-4">
+                    <h5 class="card-header">Info</h5>
+                    <div class="card-body text-primary">
+                        <p class="card-text">
+                            <strong>Number: </strong>@Model.Room.RoomNumber
+                        </p>
+                        <p class="card-text">
+                            <strong>Floor: </strong>@Model.Room.RoomFloor
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div>
+            <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary" style="width:150px">Back To Home</a>
+        </div>
+
+
+    </div>
+</form>
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+}

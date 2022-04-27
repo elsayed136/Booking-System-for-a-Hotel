@@ -1,0 +1,54 @@
+﻿@model ReservationVM
+
+@{
+    ViewData["Title"] = "Upsert";
+}
+
+<form method="post" asp-action="Upsert">
+    <input asp-for="Reservation.Id" hidden />
+    <input asp-for="Reservation.ApplicationUserId" hidden />
+
+    <div class="row border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">@(Model.Reservation.Id!=0?"Update": "Create") Reservation</h2>
+            <hr />
+        </div>
+        @*<div asp-validation-summary="All" class="text-danger"></div>*@
+
+        <div class="mb-3">
+            <label asp-for="Reservation.StartDate"></label>
+            <input asp-for="Reservation.StartDate" class="form-control" />
+            <span asp-validation-for="Reservation.StartDate" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Reservation.EndDate"></label>
+            <input asp-for="Reservation.EndDate" class="form-control" />
+            <span asp-validation-for="Reservation.EndDate" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Reservation.NumberOfPeopel"></label>
+            <input asp-for="Reservation.NumberOfPeopel" class="form-control" />
+            <span asp-validation-for="Reservation.NumberOfPeopel" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 col-md-6">
+            <label asp-for="Reservation.RoomId"></label>
+            <select asp-for="Reservation.RoomId" asp-items="@Model.RoomList" class="form-select">
+                <option disabled selected>--Select Room--</option>
+            </select>
+            <span asp-validation-for="Reservation.RoomId" class="text-danger"></span>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-primary" style="width:150px">@(Model.Reservation.Id!=0?"Update": "Create")</button>
+            <a asp-controller="Reservations" asp-action="Index" class="btn btn-secondary" style="width:150px">Back To List</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -1,0 +1,37 @@
+﻿@model SearchVM
+@{
+    ViewData["Title"] = "SreachRoom";
+}
+
+<div class="container">
+    <h1 class="display-4">Room Search</h1>
+    <form asp-action="SearchRoom">
+        <div class="m-3">
+            <label asp-for="StartDate"></label>
+            <input class="form-control w-50" asp-for="StartDate" />
+        </div>
+        <div class="m-3">
+            <label asp-for="EndDate"></label>
+            <input class="form-control w-50" asp-for="EndDate" />
+        </div>
+        <div class="m-3">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+    @foreach (var i in Model.RoomList)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                @i.Branch.Name @i.Branch.Location
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Room Number: @i.RoomNumber</h5>
+                <p class="card-text">Room Floor: @i.RoomFloor</p>
+                <p class="card-text">Room Type: @i.RoomType.Name</p>
+                <p class="card-text">Room Price (per night): @i.RoomType.Price </p>
+                <a class="btn btn-primary" asp-area="Admin" asp-controller="Reservations" asp-action="Create" asp-route-RoomId="@i.Id">Book</a>
+            </div>
+        </div>
+    }
+
+</div>

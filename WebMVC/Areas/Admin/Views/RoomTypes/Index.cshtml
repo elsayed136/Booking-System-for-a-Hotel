@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <div class="row align-items-center pt-4 mb-2">
+        <div class="col-6">
+            <h2 class="text-primary">RoomType List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="RoomTypes" asp-action="Upsert" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>&nbsp;
+                Create New RoomType
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <table id="tblData" class="table table-striped table-hover" style="width:100%" >
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>maxClientsAllowed</th>
+                    
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+@section Scripts{
+<script src="~/js/roomType.js"></script>
+}

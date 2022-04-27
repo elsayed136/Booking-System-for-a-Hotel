@@ -1,0 +1,61 @@
+﻿@model RoomVM
+
+@{
+    ViewData["Title"] = "Upsert";
+}
+
+<form method="post" asp-action="Upsert">
+    <input asp-for="Room.Id" hidden />
+
+    <div class="row border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">@(Model.Room.Id!=0?"Update": "Create") Room</h2>
+            <hr />
+        </div>
+        @*<div asp-validation-summary="All" class="text-danger"></div>*@
+
+        <div class="mb-3">
+            <label asp-for="Room.RoomNumber"></label>
+            <input asp-for="Room.RoomNumber" class="form-control" />
+            <span asp-validation-for="Room.RoomNumber" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Room.RoomFloor"></label>
+            <input asp-for="Room.RoomFloor" class="form-control" />
+            <span asp-validation-for="Room.RoomFloor" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Room.PriceFactor"></label>
+            <input asp-for="Room.PriceFactor" class="form-control" />
+            <span asp-validation-for="Room.PriceFactor" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 col-md-6">
+            <label asp-for="Room.BranchId"></label>
+            <select asp-for="Room.BranchId" asp-items="@Model.BranchList" class="form-select">
+                <option disabled selected>--Select Branch--</option>
+            </select>
+            <span asp-validation-for="Room.BranchId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 col-md-6">
+            <label asp-for="Room.RoomTypeId"></label>
+            <select asp-for="Room.RoomTypeId" asp-items="@Model.RoomTypeList" class="form-select">
+                <option disabled selected>--Select RoomType--</option>
+            </select>
+            <span asp-validation-for="Room.RoomTypeId" class="text-danger"></span>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-primary" style="width:150px">@(Model.Room.Id!=0?"Update": "Create")</button>
+            <a asp-controller="Rooms" asp-action="Index" class="btn btn-secondary" style="width:150px">Back To List</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+}
